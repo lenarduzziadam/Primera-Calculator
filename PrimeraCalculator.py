@@ -2,15 +2,15 @@ import sys
 
 #Dictionary of primera values for each card
 PRIMERA_VALUES = {
-    7: 21,
-    6: 18,
+    7: 21, #value of rank 7 is 21 
+    6: 18, #value of rank 6 is 18
     1: 16,
     5: 15,
     4: 14,
     3: 13,
     2: 12,
     
-    10: 10,
+    10: 10, #value of rank 10-8 is 10
     9: 10,
     8: 10
     
@@ -23,7 +23,7 @@ def calculate_primera_scor(captured_cards):
     #initiates best value for each suit to 0
     best_by_suit = {suit: 0 for suit in SUITS} 
     
-    #for each captured cards checks if its the highest in the suit
+    #for each captured cards checks if its the highest in the suit (iterates through  rank ano)
     for rank, suit in captured_cards:
         value = PRIMERA_VALUES.get(rank, 0) # sets tuple suit value to zero, and completes tuple (rank, suit) for primera  getting the primera value for the rank
         
