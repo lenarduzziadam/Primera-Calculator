@@ -46,7 +46,13 @@ def get_user_cards():
         card_input = input("> ").strip().lower()
         if card_input == 'd':
             break
-        
+        split = card_input.split("of")
+        card_rank = split[0]
+        card_suit = split[1]
+        if card_rank in PRIMERA_VALUES and card_suit in PRIMERA_VALUES:
+            cards.append((card_rank, card_suit,)) 
+        else:
+            raise Exception("invalid card and/or rank try again")
         # TODO: Implement parsing the card input
         # Hint: Split the input by 'of' and extract the rank and suit
         # Make sure to validate the input (valid rank and suit)
