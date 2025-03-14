@@ -18,49 +18,38 @@ PRIMERA_VALUES = {
 
 SUITS = ["coins", "cups", "swords", "clubs"]
 
-def calculate_primera_scor(captured_cards):
-    
-    #initiates best value for each suit to 0
-    best_by_suit = {suit: 0 for suit in SUITS} 
-    
-    #for each captured cards checks if its the highest in the suit (iterates through  rank ano)
-    for rank, suit in captured_cards:
-        value = PRIMERA_VALUES.get(rank, 0) # sets tuple suit value to zero, and completes tuple (rank, suit) for primera  getting the primera value for the rank
+def print_primiera_rules():
+    print("\n=== PRIMIERA SCORING RULES ===")
+    print("In Primiera scoring, cards have special point values:")
+    print("  7 = 21 points (highest)")
+    print("  6 = 18 points")
+    print("  1 (Ace) = 16 points")
+    print("  5 = 15 points")
+    print("  4 = 14 points")
+    print("  3 = 13 points")
+    print("  2 = 12 points")
+    print("  Face cards (8, 9, 10) = 10 points each (lowest)")
+    print("\nYour Primiera score is calculated by:")
+    print("1. Taking your highest card in each suit")
+    print("2. Adding those four values together")
+    print("3. The maximum possible score is 84 (all four 7s)")
+    print("=====================================\n")
+def calculate_primera_score(self):
+    total = 0
+    for suit in SUITS:
+        print(f"What is highest primera card rank in {suit} Suit")
+        rank_input = input("input best rank here: \n")
         
-        #if value has a better value than the current best by suit update best by suit to value. 
-        if value > best_by_suit[suit]:
-            best_by_suit[suit] = value
-            
-    #calculates overall score via adding best value of each suit
-    total_score = sum(best_by_suit.values())
-    
-    return total_score, best_by_suit
-
-def get_user_cards():
-    cards = []
-    print("enter captured cards")
-    print("Format: [rank] of [suit]")
-    print("type d when finished")
-    
-    while True:
-        card_input = input("> ").strip().lower()
-        if card_input == 'd':
-            break
-        split = card_input.split("of")
-        card_rank = split[0]
-        card_suit = split[1]
-        if card_rank in PRIMERA_VALUES and card_suit in PRIMERA_VALUES:
-            cards.append((card_rank, card_suit,)) 
+        if int(rank_input) == 0:
+            print(f"Aww too bad you didn't recieve any {suit} cards")
+            total += 0
         else:
-            raise Exception("invalid card and/or rank try again")
-        # TODO: Implement parsing the card input
-        # Hint: Split the input by 'of' and extract the rank and suit
-        # Make sure to validate the input (valid rank and suit)
-        # If valid, add (rank, suit) tuple to cards list
-        # If invalid, print an error message and continue
-        
-   
-   
-   
-   
-    return cards
+            if int(rank_input) is None or not isinstance(int(rank_input), int) or int(rank_input) not in PRIMERA_VALUES:
+                raise ValueError("Not valid type")
+            if int(rank_input) > 10 or int(rank_input) < 0:
+                raise Exception("not a valid rank in Scopa deck")
+            else:
+                print(f"congrats looks like you have recieved {PRIMERA_VALUES[int(rank_input)]} points today")
+                total += PRIMERA_VALUES[int(rank_input)]
+    return total
+            
