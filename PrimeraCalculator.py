@@ -18,7 +18,7 @@ PRIMERA_VALUES = {
 
 SUITS = ["coins", "cups", "swords", "clubs"]
 
-def print_primiera_rules():
+def print_primera_rules():
     print("\n=== PRIMIERA SCORING RULES ===")
     print("In Primiera scoring, cards have special point values:")
     print("  7 = 21 points (highest)")
@@ -34,7 +34,7 @@ def print_primiera_rules():
     print("2. Adding those four values together")
     print("3. The maximum possible score is 84 (all four 7s)")
     print("=====================================\n")
-def calculate_primera_score(self):
+def calculate_primera_score():
     total = 0
     for suit in SUITS:
         print(f"What is highest primera card rank in {suit} Suit")
@@ -51,5 +51,6 @@ def calculate_primera_score(self):
             else:
                 print(f"congrats looks like you have recieved {PRIMERA_VALUES[int(rank_input)]} points today")
                 total += PRIMERA_VALUES[int(rank_input)]
-    return total
+    print(f"You have a grand total of {total} points congrats GUIDO")
+    return
             
