@@ -51,6 +51,6 @@ def calculate_primera_score():
             else:
                 print(f"congrats looks like you have recieved {PRIMERA_VALUES[int(rank_input)]} points today")
                 total += PRIMERA_VALUES[int(rank_input)]
-    print(f"You have a grand total of {total} points congrats GUIDO")
+    print(f"You have a grand total of {total} points congrats Nino")
     return
             
