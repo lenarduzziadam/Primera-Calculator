@@ -1,4 +1,9 @@
 import sys
+from tkinter import Canvas, Label, BOTH
+import tkinter as tk
+
+
+
 
 #Dictionary of primera values for each card
 PRIMERA_VALUES = {
@@ -54,3 +59,36 @@ def calculate_primera_score():
     print(f"You have a grand total of {total} points congrats Nino")
     return
             
+            
+class Window:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        
+        #sets root widget title
+        self.root = tk.Tk()
+        self.root.title("Primera Calculator")
+        self.root.protocol("WM_DELETE_WINDOW", self.close)
+        
+        #create canvas with root keeping width and height as parameters
+        self.canvas = Canvas(self.root, width=width, height=height)
+        self.canvas.pack()
+        
+        #creates label widget
+        self.label = tk.Label(self.root, text="Hello, Tkinter!")
+        self.label.pack()
+        
+        self.running = False
+    
+    def create_entry(self):
+        # creating a entry for input
+        # name using widget Entry
+        num_var=tk.StringVar()
+        num=num_var.get()
+        num_entry = tk.Entry(self.root,textvariable = num_var, font=('calibre',10,'normal'))
+    
+    
+    #closing method
+    def close(self):
+        #sets running variable to False
+        self.running = False
