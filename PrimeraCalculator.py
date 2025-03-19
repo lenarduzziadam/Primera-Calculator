@@ -75,8 +75,10 @@ class Window:
         self.canvas.pack()
         
         #creates label widget
-        self.label = tk.Label(self.root, text="Hello, Tkinter!")
+        self.label = tk.Label(self.root, text="In Primiera scoring, cards have special point values:")
         self.label.pack()
+        
+        self.create_entry()
         
         self.running = False
     
@@ -86,6 +88,8 @@ class Window:
         num_var=tk.StringVar()
         num=num_var.get()
         num_entry = tk.Entry(self.root,textvariable = num_var, font=('calibre',10,'normal'))
+        score = 0
+        score += PRIMERA_VALUES[int(num)]
     
     
     #closing method
