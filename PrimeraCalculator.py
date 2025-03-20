@@ -7,6 +7,7 @@ import tkinter as tk
 
 #Dictionary of primera values for each card
 PRIMERA_VALUES = {
+    0: 0,
     7: 21, #value of rank 7 is 21 
     6: 18, #value of rank 6 is 18
     1: 16,

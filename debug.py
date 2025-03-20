@@ -1,6 +1,6 @@
 import sys
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, font
 from PrimeraCalculator import *
 
 window = Tk()
@@ -24,8 +24,8 @@ Your Primiera score is calculated by:
 2. Adding those four values together
 3. The maximum possible score is 84 (all four 7s)
 ====================================="""
-
-label = Label(window,text=instruction_text)
+custom_font = font.Font(family="Comic Sans MS", size=22)
+label = Label(window,text=instruction_text, font=custom_font)
 label.pack()
 
 def check_entry():
@@ -42,10 +42,10 @@ def check_entry():
             total += PRIMERA_VALUES[int(input_3)]
             total += PRIMERA_VALUES[int(input_4)]
             
-            in_label = Label(window, text=f"Grand Total: {total}")
+            in_label = Label(window, text=f"Grand Total: {total}", font=custom_font)
             in_label.pack()
-        else:
-            result = f"'inputs' not found in dictionary."
+        
+        result = f"Grand TOTAL: {total}"
     else:
         result = f"'{user_input}' not found in dictionary."
     messagebox.showinfo("Result", result)
