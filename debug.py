@@ -4,7 +4,7 @@ from tkinter import messagebox
 from PrimeraCalculator import *
 
 window = Tk()
-window.geometry("400x500")
+window.geometry("1000x1500")
 window.resizable(True, True)
 window.title("Primera Calculator")
 
@@ -30,60 +30,40 @@ label.pack()
 
 def check_entry():
     #creates entry for user inpuut
+    total = 0
     user_input = entry.get()
+    input_2 = calculator.get()
+    input_3 = coins.get()
+    input_4 = clubs.get()
     if int(user_input) in PRIMERA_VALUES:
-        result = f"'{int(user_input)}' found: {PRIMERA_VALUES[int(user_input)]}"
+        total += PRIMERA_VALUES[int(user_input)]
+        if int(input_2) in PRIMERA_VALUES and int(input_3) in PRIMERA_VALUES and int(input_4) in PRIMERA_VALUES:
+            total += PRIMERA_VALUES[int(input_2)]
+            total += PRIMERA_VALUES[int(input_3)]
+            total += PRIMERA_VALUES[int(input_4)]
+            
+            in_label = Label(window, text=f"Grand Total: {total}")
+            in_label.pack()
+        else:
+            result = f"'inputs' not found in dictionary."
     else:
         result = f"'{user_input}' not found in dictionary."
     messagebox.showinfo("Result", result)
     
-def calculate_primera_score_tk():
-    total = 0
-    for suit in SUITS:
-        first = Label(window, text=f"What is highest primera card rank in {suit} Suit")
-        first.pack()
-        
-        rank_input = calculator.get()
-        
-        # Check if input is empty
-        if not rank_input:
-            error = Label(window, text=f"Please enter a value for {suit} suit")
-            error.pack()
-            continue
-        
-        # Check if input is "0"
-        if rank_input == "0":
-            error = Label(window, text=f"Aww too bad you didn't receive any {suit} cards")
-            error.pack()
-            total += 0
-            continue
-        
-        # Try to convert to integer and validate
-        try:
-            rank_input_int = int(rank_input)
-            if rank_input_int < 0 or rank_input_int > 10:
-                error = Label(window, text=f"Not a valid rank in Scopa deck (must be 0-10)")
-                error.pack()
-                continue
-            else:
-                congrats = Label(window, text=f"Congrats! You have received {PRIMERA_VALUES[rank_input_int]} points")
-                congrats.pack()
-                total += PRIMERA_VALUES[rank_input_int]
-        except ValueError:
-            error = Label(window, text=f"Please enter a valid number for {suit} suit")
-            error.pack()
-            continue
-    
-    finished = Label(window, text=f"You have a grand total of {total} points. Congrats Nino!")
-    finished.pack()
-    return
 
 # Create an entry widget
-entry = Entry(window, width=30)
-calculator = Entry(window, width=42)
-entry.pack(pady=10)
+entry = Entry(window, width=30, text="CUPS")
+calculator = Entry(window, width=30)
+coins = Entry(window, width=30)
+clubs = Entry(window, width=30)
+entry.pack()
+calculator.pack()
+coins.pack()
+clubs.pack()
 
-check_button = Button(window, text="Enter Value", command=calculate_primera_score_tk())
-check_button.pack(pady=10)
+
+cups_button = Button(window, text="Enter Values", command=check_entry)
+
+cups_button.pack(pady=10)
 
 window.mainloop()
